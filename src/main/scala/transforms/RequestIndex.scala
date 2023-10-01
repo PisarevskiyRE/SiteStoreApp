@@ -1,11 +1,9 @@
 package transforms
 
-import io.circe.syntax.EncoderOps
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.client.Requests
 import org.elasticsearch.common.xcontent.XContentType
 import scheme.{Item, OutputItem}
-import io.circe.generic.auto._
 
 import scala.jdk.CollectionConverters.MapHasAsJava
 

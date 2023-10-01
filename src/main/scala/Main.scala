@@ -1,31 +1,12 @@
-import org.apache.flink.api.common.eventtime.{SerializableTimestampAssigner, WatermarkStrategy}
-import org.apache.flink.api.common.functions.{AggregateFunction, MapFunction}
-import org.apache.flink.api.common.state.{ValueState, ValueStateDescriptor}
+import org.apache.flink.api.common.eventtime.WatermarkStrategy
 import org.apache.flink.api.common.typeinfo.Types
-import org.apache.flink.api.connector.sink2.SinkWriter
-import org.apache.flink.api.java.functions.KeySelector
-import org.apache.flink.configuration.Configuration
-import org.apache.flink.connector.elasticsearch.sink.{Elasticsearch7SinkBuilder, ElasticsearchSink, RequestIndexer}
-import org.apache.flink.connector.file.src.FileSource
-import org.apache.flink.core.fs.Path
-import org.apache.flink.formats.csv.CsvReaderFormat
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.annotation.JsonProperty
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.dataformat.csv.CsvSchema
-import org.apache.flink.streaming.api.datastream.{DataStream, DataStreamSource, SingleOutputStreamOperator}
+import org.apache.flink.streaming.api.datastream.{DataStream, SingleOutputStreamOperator}
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment
-import org.apache.flink.streaming.api.functions.KeyedProcessFunction
-import org.apache.flink.streaming.api.windowing.assigners.{SlidingProcessingTimeWindows, TumblingEventTimeWindows}
+import org.apache.flink.streaming.api.windowing.assigners.SlidingProcessingTimeWindows
 import org.apache.flink.streaming.api.windowing.time.Time
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow
-import org.apache.flink.util.{Collector, OutputTag}
-import org.apache.http.HttpHost
-import scheme.Constants.kafkaTopic
 import scheme._
 import source.KafSource
 import transforms._
-
-import java.time.format.DateTimeFormatter
-import java.time.{Duration, LocalTime, ZoneId, ZonedDateTime}
 
 
 object Main extends App {

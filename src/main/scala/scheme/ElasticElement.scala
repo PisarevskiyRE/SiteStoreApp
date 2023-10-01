@@ -1,3 +1,0 @@
-package scheme
-
-trait ElasticElement
